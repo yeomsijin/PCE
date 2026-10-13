@@ -1,8 +1,61 @@
-# PCE: persistence entropy excess
+# Persistent Cross Entropy (PCE)
 
-Research implementation of **own-own PCE** for H0 and H1 persistence diagrams,
-and the PRL main-text neighborhood convention for topological causality (TC).
-The current estimator definition was adopted on 2026-10-12.
+Persistent Cross Entropy compares persistence diagrams by inducing a probability
+on the reference diagram plus an unexplained event. Its cross entropy is the
+reference persistent entropy plus a nonnegative, directional entropy excess.
+
+The introductory examples reproduce **Figures 1 and 2 of _Persistent Cross
+Entropy_**, using the original geometry and Appendix B settings:
+
+- **Figure 1:** two loops with nearly equal persistent entropy; the induced
+  probabilities and cross entropy distinguish the four explaining clouds.
+- **Figure 2:** the spring-mass benchmark, including entropy excess, unexplained
+  mass and seven symmetric diagram baselines across 81 coupling pairs.
+
+This repository also includes the current own-own PCE research API (H0/H1) and
+PRL main-text TC. **The paper figure examples use explicitly fixed global widths;
+the research API defaults to pairwise widths.** Their estimator settings are
+listed separately below. The research defaults were adopted on 2026-10-12.
+
+## Paper examples
+
+```sh
+python -m pip install ".[examples]"
+python -m examples.figure1_two_loops --output example_outputs/figure1
+python -m examples.figure2_spring_mass --output example_outputs/figure2
+```
+
+The scripts regenerate PNG figures, machine-readable CSV metrics, persistence
+diagrams and settings JSON. They run locally without notebooks, external datasets
+or network access. Figure 2 computes exact alpha complexes in four dimensions;
+the full grid can take substantial time (four worker processes by default;
+use `--workers 1` for serial execution). It caches its own generated diagrams
+in the selected output directory. A small smoke check uses `--grid-size 2`, which
+is a different grid and is not the full paper experiment.
+
+![Figure 1: two loops and induced probabilities](examples/figures/figure1.png)
+
+![Figure 2: spring-mass directional comparison](examples/figures/figure2.png)
+
+| Setting | Figure 1 | Figure 2 |
+| --- | --- | --- |
+| Homology | finite H1, Euclidean Vietoris-Rips | finite H1, GUDHI alpha complex |
+| Kernel widths (birth, lifetime) | (0.50, 0.50), fixed | (0.40, 0.15), fixed |
+| Response scale | pooled positive absolute residual median, about 0.298499 | pooled absolute residual median, about 2.001779 |
+| Lifetime response weight | `lifetime/(1+lifetime)` | `lifetime/(1+lifetime)` |
+| Diagram preprocessing | raw coordinates; lifetime > 0.001 | square-root alpha radii; divide each diagram by its own maximum lifetime |
+| Samples | 239 / 758 / 695 / 605 / 84 cloud points | RK4 dt=0.01, 10,000 updates, every 10th state; 997 delay vectors |
+| Seeds / initial condition | 7, 107, 207, 307, 407 | state (x, xdot, y, ydot) = (1, 0, 0, 1) |
+
+The response scale is calibrated once over the full figure experiment, not per
+pair. The examples use augmented probability masses without renormalizing within
+the reference diagram. Figure 1 computes actual cross entropy **PE + excess**;
+Figure 2 plots **entropy excess** and unexplained mass. Figure 2's horizontal
+coordinate is `E(B,A)`, and its vertical coordinate is `E(A,B)`. Every symmetric
+baseline compares the joint diagram DAB to DA and DB. R² values are descriptive
+regime-separation scores, not accuracies or permutation-test p-values. These
+examples reproduce the supplied PCE manuscript; they do not establish exact
+reproduction of the earlier Bando benchmark's unavailable implementation.
 
 ## Installation
 
@@ -88,9 +141,10 @@ normalization, full Theiler window `(m-1)*delay`, 64 calibration anchors and
 
 ## Tests
 
-The standalone release includes portable PCE and bandwidth tests:
+The standalone release includes portable PCE, bandwidth and paper-example tests:
 
 ```sh
+python -m pip install ".[test]"
 python -m unittest discover -s tests -v
 ```
 
