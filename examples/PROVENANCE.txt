@@ -1,0 +1,23 @@
+Source: user-supplied Persistent Cross Entropy manuscript, Figures 1 and 2,
+Appendix B.1-B.2 and Tables 3-4 (PDF supplied on 2026-10-13).
+
+Figure 1 geometry was extracted from the final original two-loop notebook.
+Final generator parameters are recorded explicitly in figure1_two_loops.py.
+Figure 2 simulation, embedding and alpha-complex conventions were extracted
+from the original alpha-complex spring-mass notebook. No notebook is executed
+at runtime. Experimental source files and historical results remain unchanged.
+
+All paper PCE metrics use tpce.entropy with g(l)=l/(1+l), Gaussian similarity,
+fixed figure-specific bandwidths and a single globally calibrated response
+scale. Probabilities retain the unexplained event and are not normalized over
+reference bars. These paper experiments do not use adaptive pair bandwidths.
+
+The exact 2-Wasserstein baseline uses SciPy's linear sum assignment instead
+of GUDHI/POT: same order 2, Linfinity birth-death ground metric, and diagonal
+matching. Uniform silhouette weights use the arithmetic mean of tents.
+At alpha=0, beta=.4, all six tested symmetric baselines matched saved original
+results to at most 1.4e-15 (both coordinate directions).
+
+Generated PNG previews come from the supplied runnable scripts. The original
+manuscript PDF, datasets, manuscript sources, PRL snapshots and research output
+folders are not part of this repository.
