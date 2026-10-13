@@ -1,0 +1,42 @@
+{
+  "PCE": {
+    "four_regimes_r2": 0.5598508080626873,
+    "two_directions_r2": 0.740234566331218
+  },
+  "Boundary": {
+    "four_regimes_r2": 0.449308394088739,
+    "two_directions_r2": 0.9933782687405046
+  },
+  "Bottleneck": {
+    "four_regimes_r2": 0.1800850608693949,
+    "two_directions_r2": 0.7328719417441888
+  },
+  "Wasserstein": {
+    "four_regimes_r2": 0.04955191763769773,
+    "two_directions_r2": 0.6618319846421759
+  },
+  "Betti": {
+    "four_regimes_r2": 0.09141003601242292,
+    "two_directions_r2": 0.5126924724505832
+  },
+  "Landscape": {
+    "four_regimes_r2": 0.196530574886155,
+    "two_directions_r2": 0.8757656619116637
+  },
+  "Silhouette": {
+    "four_regimes_r2": 0.08213608063610833,
+    "two_directions_r2": 0.616149172309491
+  },
+  "PSSK": {
+    "four_regimes_r2": 0.08235772039472578,
+    "two_directions_r2": 0.6779984052966086
+  },
+  "PI": {
+    "four_regimes_r2": 0.1073070776324404,
+    "two_directions_r2": 0.5077511990268024
+  },
+  "oneway": {
+    "correct": 16,
+    "total": 16
+  }
+}

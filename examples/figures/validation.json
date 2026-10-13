@@ -1,0 +1,11 @@
+{
+  "core_and_integration_tests": 30,
+  "published_portable_tests": 15,
+  "bitwise_unchanged_h0_h1_pairs": 200,
+  "figure1_counts_and_pce_match_manuscript": true,
+  "figure2_grid_conditions": 81,
+  "figure2_oneway_correct": 16,
+  "figure2_all_9_table1_r2_pairs_match_to_3_decimals": true,
+  "build": "pce_research-0.1.0 wheel built and imported outside source tree",
+  "separate_research_suite": "FPRM tests depend on old PyTorch with a NumPy ABI incompatibility; not included in release"
+}
